@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodCare | Zero-Waste Food Management System</title>
+  <meta name="description" content="All-in-one Zero Waste Food Management System combining kitchen inventory tracking, surplus food recovery board, recipe generator, and order management.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Header & Navigation -->
+  <header class="app-header">
+    <div class="header-content">
+      <a href="#" class="brand-logo" id="brandLogo">
+        <div class="logo-icon">🍏</div>
+        <div>
+          <h1 class="brand-title">FoodCare <span class="brand-badge">Hybrid System</span></h1>
+        </div>
+      </a>
+
+      <!-- Quick Role Mode Selector (No Auth Required) -->
+      <div class="mode-selector-wrapper">
+        <span class="mode-label">Operational Mode:</span>
+        <select id="userModeSelect" class="mode-select">
+          <option value="household">🏡 Household Kitchen</option>
+          <option value="vendor">🏪 Restaurant / Commercial Vendor</option>
+          <option value="ngo">🤝 NGO / Community Beneficiary</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- Top Key Metrics Row -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-icon-box icon-emerald">📦</div>
+        <div class="metric-info">
+          <h4>Active Inventory</h4>
+          <div class="metric-number" id="metricTotalItems">0</div>
+          <span class="metric-subtitle">Tracked Items</span>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon-box icon-amber">⏳</div>
+        <div class="metric-info">
+          <h4>Expiring Soon</h4>
+          <div class="metric-number" id="metricExpiringCount">0</div>
+          <span class="metric-subtitle">Needs Action within 3 Days</span>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon-box icon-indigo">🤝</div>
+        <div class="metric-info">
+          <h4>Surplus Available</h4>
+          <div class="metric-number" id="metricDonationsCount">0</div>
+          <span class="metric-subtitle">Ready for Pickup</span>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon-box icon-rose">🌱</div>
+        <div class="metric-info">
+          <h4>CO₂ Saved</h4>
+          <div class="metric-number" id="metricCo2Saved">0 kg</div>
+          <span class="metric-subtitle">Environmental Impact</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navigation Tab Buttons -->
+    <nav class="nav-tabs" role="tablist">
+      <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
+      <button class="tab-btn" data-tab="inventory">📦 Smart Inventory</button>
+      <button class="tab-btn" data-tab="donations">🤝 Surplus Food Recovery</button>
+      <button class="tab-btn" data-tab="recipes">🍳 Smart Recipe Matcher</button>
+      <button class="tab-btn" data-tab="orders">🛒 Menu & Orders</button>
+      <button class="tab-btn" data-tab="analytics">📈 Impact & Reports</button>
+    </nav>
+
+    <!-- TAB 1: DASHBOARD OVERVIEW -->
+    <section id="tab-dashboard" class="tab-panel active">
+      <div class="glass-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <h2>System Overview</h2>
+            <p>Real-time status of food stock, alerts, and community recovery opportunities.</p>
+          </div>
+          <button class="btn-primary" id="openAddInventoryBtn">+ Add New Stock Item</button>
+        </div>
+
+        <!-- Dashboard Highlights Grid -->
+        <div class="cards-grid" id="dashboardExpiringList">
+          <!-- Dynamically filled with items expiring soon -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: SMART INVENTORY -->
+    <section id="tab-inventory" class="tab-panel">
+      <div class="glass-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <h2>Inventory Management</h2>
+            <p>Manage ingredients, quantities, locations, and expiry dates.</p>
+          </div>
+          <div class="controls-bar">
+            <div class="search-input-wrap">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="inventorySearch" placeholder="Search inventory...">
+            </div>
+            <select id="inventoryCategoryFilter" class="filter-select">
+              <option value="all">All Categories</option>
+              <option value="Dairy">Dairy</option>
+              <option value="Bakery">Bakery</option>
+              <option value="Produce">Produce</option>
+              <option value="Meat">Meat</option>
+              <option value="Pantry">Pantry</option>
+            </select>
+            <button class="btn-primary" id="openAddInventoryModalBtn">+ Add Item</button>
+          </div>
+        </div>
+
+        <div class="cards-grid" id="inventoryGrid">
+          <!-- Dynamically rendered stock cards -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: SURPLUS FOOD RECOVERY & DONATIONS -->
+    <section id="tab-donations" class="tab-panel">
+      <div class="glass-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <h2>Surplus Food Recovery Board</h2>
+            <p>Free food posts offered by local households and restaurants for community pick-up.</p>
+          </div>
+          <button class="btn-primary" id="openPostDonationBtn">➕ Share Surplus Food</button>
+        </div>
+
+        <div class="cards-grid" id="donationsGrid">
+          <!-- Dynamically rendered donation posts -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: SMART RECIPE SUGGESTER -->
+    <section id="tab-recipes" class="tab-panel">
+      <div class="glass-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <h2>Zero-Waste Recipe Suggester</h2>
+            <p>Smart recipes generated based on ingredients that are expiring soon in your fridge!</p>
+          </div>
+        </div>
+        <div class="cards-grid" id="recipesGrid">
+          <!-- Dynamically populated zero waste recipes -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: MENU & ORDERS -->
+    <section id="tab-orders" class="tab-panel">
+      <div class="glass-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <h2>Commercial Menu & Customer Orders</h2>
+            <p>Browse available food items, place pick-up orders, and track preparation statuses.</p>
+          </div>
+        </div>
+
+        <div class="cards-grid" id="menuGrid">
+          <!-- Dynamically populated menu options -->
+        </div>
+
+        <div style="margin-top: 32px;" class="glass-panel">
+          <h3>Active Customer Orders Status</h3>
+          <div id="ordersList" style="margin-top: 16px;">
+            <!-- Order Status Pipeline -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 6: ANALYTICS & IMPACT -->
+    <section id="tab-analytics" class="tab-panel">
+      <div class="glass-panel">
+        <div class="panel-header">
+          <div class="panel-title-wrap">
+            <h2>Sustainability & Impact Metrics</h2>
+            <p>Visualizing food waste reduction, financial savings, and environmental contributions.</p>
+          </div>
+        </div>
+
+        <div class="chart-container">
+          <div class="svg-donut-wrap">
+            <svg width="180" height="180" viewBox="0 0 36 36">
+              <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#1E293B" stroke-width="3.8"/>
+              <path id="donutSegment" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#10B981" stroke-width="3.8" stroke-dasharray="85, 100"/>
+            </svg>
+            <div class="donut-label">
+              <span class="donut-percentage" id="donutPercent">85%</span>
+              <span class="donut-subtext">Food Consumed</span>
+            </div>
+          </div>
+
+          <div style="max-width: 450px;">
+            <h3 style="margin-bottom: 12px;">Financial & CO₂ Impact Summary</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 16px;">
+              By utilizing FoodCare's hybrid tracking and surplus recovery network, your system has successfully prevented waste and generated positive community impact.
+            </p>
+            <ul style="color: var(--text-muted); list-style: none; display: flex; flex-direction: column; gap: 8px;">
+              <li>🟢 <strong>Total Waste Saved:</strong> <span id="analyticsWasteKg" style="color:var(--text-main);">0 kg</span></li>
+              <li>🌱 <strong>CO₂ Emission Reduction:</strong> <span id="analyticsCo2" style="color:var(--text-main);">0 kg CO₂e</span></li>
+              <li>💵 <strong>Estimated Financial Value Saved:</strong> <span id="analyticsMoney" style="color:var(--text-main);">$0.00</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL: ADD INVENTORY ITEM -->
+  <div class="modal-overlay" id="addInventoryModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Add Food Item to Stock</h3>
+        <button class="close-modal" id="closeAddInventoryModal">&times;</button>
+      </div>
+      <form id="addInventoryForm">
+        <div class="form-group">
+          <label>Item Name</label>
+          <input type="text" id="itemName" class="form-control" placeholder="e.g. Fresh Organic Apples" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Category</label>
+            <select id="itemCategory" class="form-control">
+              <option value="Produce">Produce</option>
+              <option value="Dairy">Dairy</option>
+              <option value="Bakery">Bakery</option>
+              <option value="Meat">Meat</option>
+              <option value="Pantry">Pantry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Storage Location</label>
+            <select id="itemLocation" class="form-control">
+              <option value="Fridge">Fridge</option>
+              <option value="Pantry">Pantry</option>
+              <option value="Freezer">Freezer</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Quantity</label>
+            <input type="number" id="itemQuantity" class="form-control" value="1" min="1" required>
+          </div>
+          <div class="form-group">
+            <label>Unit</label>
+            <input type="text" id="itemUnit" class="form-control" placeholder="e.g. kg, Liters, Items" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Expiration Date</label>
+          <input type="date" id="itemExpiry" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label>Notes / Storage Instructions</label>
+          <input type="text" id="itemNotes" class="form-control" placeholder="Optional notes...">
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">Save to Inventory</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: POST SURPLUS DONATION -->
+  <div class="modal-overlay" id="postDonationModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Post Surplus Food for Recovery</h3>
+        <button class="close-modal" id="closePostDonationModal">&times;</button>
+      </div>
+      <form id="postDonationForm">
+        <div class="form-group">
+          <label>Food Package Name</label>
+          <input type="text" id="donItemName" class="form-control" placeholder="e.g. 10 Packets of Fresh Baguettes" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Quantity / Portion</label>
+            <input type="text" id="donQuantity" class="form-control" placeholder="e.g. 5 Boxes or 3 kg" required>
+          </div>
+          <div class="form-group">
+            <label>Available Hours</label>
+            <input type="number" id="donExpiryHours" class="form-control" value="12" min="1" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Pick-up Location Address</label>
+          <input type="text" id="donLocation" class="form-control" placeholder="e.g. 104 Main St, Front Counter" required>
+        </div>
+        <div class="form-group">
+          <label>Pick-up Time Window</label>
+          <input type="text" id="donWindow" class="form-control" placeholder="e.g. Today between 4 PM - 7 PM" required>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">Publish to Community Board</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Client JavaScript -->
+  <script src="js/app.js"></script>
+</body>
+</html>
