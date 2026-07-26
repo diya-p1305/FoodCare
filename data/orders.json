@@ -1,0 +1,25 @@
+[
+  {
+    "id": "ord_301",
+    "customerName": "Alex Morgan",
+    "items": [
+      { "name": "Fresh Organic Salad Bowl", "qty": 2, "price": 8.50 },
+      { "name": "Fresh Milk (1L)", "qty": 1, "price": 3.00 }
+    ],
+    "totalAmount": 20.00,
+    "status": "ready",
+    "createdAt": "2026-07-24T16:30:00Z",
+    "pickupType": "Store Pickup"
+  },
+  {
+    "id": "ord_302",
+    "customerName": "Samantha Reed",
+    "items": [
+      { "name": "Surplus Pastry Bundle", "qty": 1, "price": 5.00 }
+    ],
+    "totalAmount": 5.00,
+    "status": "preparing",
+    "createdAt": "2026-07-24T17:15:00Z",
+    "pickupType": "Express Pickup"
+  }
+]
