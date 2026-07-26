@@ -1,0 +1,44 @@
+[
+  {
+    "id": "don_201",
+    "itemName": "Surplus Artisanal Baguettes & Pastries",
+    "donorName": "GreenLeaf Bakery & Cafe",
+    "donorType": "Restaurant/Vendor",
+    "quantity": "15 Packets",
+    "pickupLocation": "742 Evergreen Terrace, Downtown",
+    "pickupWindow": "Today, 6:00 PM - 9:00 PM",
+    "expiryHours": 8,
+    "postedAt": "2026-07-24T12:00:00Z",
+    "status": "available",
+    "claimCode": null,
+    "claimedBy": null
+  },
+  {
+    "id": "don_202",
+    "itemName": "Excess Organic Tomatoes & Bell Peppers",
+    "donorName": "Sunny Farm Household",
+    "donorType": "Individual",
+    "quantity": "5 kg",
+    "pickupLocation": "104 Maple Street, Northside",
+    "pickupWindow": "Today, 4:00 PM - 8:00 PM",
+    "expiryHours": 18,
+    "postedAt": "2026-07-24T10:30:00Z",
+    "status": "available",
+    "claimCode": null,
+    "claimedBy": null
+  },
+  {
+    "id": "don_203",
+    "itemName": "Catered Vegetable Pasta Boxes",
+    "donorName": "TechCorp Event Kitchen",
+    "donorType": "Commercial Kitchen",
+    "quantity": "20 Boxes",
+    "pickupLocation": "Building B, Innovation Park",
+    "pickupWindow": "Completed",
+    "expiryHours": 0,
+    "postedAt": "2026-07-23T14:00:00Z",
+    "status": "claimed",
+    "claimCode": "CLAIM-8841",
+    "claimedBy": "Hope Community NGO"
+  }
+]
