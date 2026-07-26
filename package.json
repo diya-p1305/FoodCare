@@ -1,0 +1,19 @@
+{
+  "name": "food-management-system",
+  "version": "1.0.0",
+  "description": "Zero-dependency Food Management System (Inventory, Surplus Donation & Ordering)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "food-management",
+    "inventory",
+    "zero-waste",
+    "food-donation",
+    "nodejs"
+  ],
+  "author": "Antigravity AI",
+  "license": "MIT"
+}
