@@ -1,0 +1,62 @@
+[
+  {
+    "id": "inv_101",
+    "name": "Fresh Organic Milk (1L)",
+    "category": "Dairy",
+    "quantity": 2,
+    "unit": "Liters",
+    "location": "Fridge",
+    "purchaseDate": "2026-07-20",
+    "expiryDate": "2026-07-26",
+    "status": "warning",
+    "notes": "Store at 4°C or below"
+  },
+  {
+    "id": "inv_102",
+    "name": "Whole Grain Bread",
+    "category": "Bakery",
+    "quantity": 1,
+    "unit": "Loaf",
+    "location": "Pantry",
+    "purchaseDate": "2026-07-22",
+    "expiryDate": "2026-07-25",
+    "status": "critical",
+    "notes": "Use for toasts or donate"
+  },
+  {
+    "id": "inv_103",
+    "name": "Fresh Red Apples",
+    "category": "Produce",
+    "quantity": 12,
+    "unit": "Items",
+    "location": "Pantry",
+    "purchaseDate": "2026-07-18",
+    "expiryDate": "2026-08-05",
+    "status": "fresh",
+    "notes": "Crisp and juicy"
+  },
+  {
+    "id": "inv_104",
+    "name": "Greek Yogurt (500g)",
+    "category": "Dairy",
+    "quantity": 3,
+    "unit": "Tubs",
+    "location": "Fridge",
+    "purchaseDate": "2026-07-21",
+    "expiryDate": "2026-07-28",
+    "status": "fresh",
+    "notes": "Plain unsweetened"
+  },
+  {
+    "id": "inv_105",
+    "name": "Chicken Breast (1kg)",
+    "category": "Meat",
+    "quantity": 1,
+    "unit": "Pack",
+    "location": "Freezer",
+    "purchaseDate": "2026-07-15",
+    "expiryDate": "2026-08-15",
+    "status": "fresh",
+    "notes": "Freezer sealed"
+  }
+]
